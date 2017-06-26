@@ -155,8 +155,8 @@ SWIFT_CLASS("_TtC11SearchStore11AppDelegate")
 @class NSBundle;
 @class NSCoder;
 
-SWIFT_CLASS("_TtC11SearchStore14ViewController")
-@interface ViewController : UIViewController
+SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
+@interface SearchViewController : UIViewController
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
