@@ -133,6 +133,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
+@import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -152,15 +153,36 @@ SWIFT_CLASS("_TtC11SearchStore11AppDelegate")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class UISearchBar;
+@class UITableView;
 @class NSBundle;
 @class NSCoder;
 
 SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @interface SearchViewController : UIViewController
+@property (nonatomic, weak) IBOutlet UISearchBar * _Null_unspecified searchBar;
+@property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull searchResults;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface SearchViewController (SWIFT_EXTENSION(SearchStore)) <UITableViewDataSource>
+@end
+
+
+@interface SearchViewController (SWIFT_EXTENSION(SearchStore)) <UITableViewDelegate, UIScrollViewDelegate>
+@end
+
+@class UITableViewCell;
+
+@interface SearchViewController (SWIFT_EXTENSION(SearchStore)) <UISearchBarDelegate, UIBarPositioningDelegate>
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
+- (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)searchBarSearchButtonClicked:(UISearchBar * _Nonnull)searchBar;
 @end
 
 #pragma clang diagnostic pop
