@@ -162,7 +162,6 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @interface SearchViewController : UIViewController
 @property (nonatomic, weak) IBOutlet UISearchBar * _Null_unspecified searchBar;
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
-@property (nonatomic, copy) NSArray<NSString *> * _Nonnull searchResults;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
@@ -178,11 +177,13 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @end
 
 @class UITableViewCell;
+@protocol UIBarPositioning;
 
 @interface SearchViewController (SWIFT_EXTENSION(SearchStore)) <UISearchBarDelegate, UIBarPositioningDelegate>
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)searchBarSearchButtonClicked:(UISearchBar * _Nonnull)searchBar;
+- (UIBarPosition)positionForBar:(id <UIBarPositioning> _Nonnull)bar SWIFT_WARN_UNUSED_RESULT;
 @end
 
 #pragma clang diagnostic pop

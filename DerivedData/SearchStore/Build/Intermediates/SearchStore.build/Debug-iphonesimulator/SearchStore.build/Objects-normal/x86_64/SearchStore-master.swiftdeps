@@ -1,6 +1,7 @@
 version: "Apple Swift version 3.1 (swiftlang-802.0.53 clang-802.0.42)"
 options: "86314e0cb2bb177122ae33784423db3a"
-build_time: [551907840, 465165000]
+build_time: [551908992, 740988000]
 inputs:
-  "/Users/kaiwang/Desktop/SearchStore/SearchStore/SearchViewController.swift": [551907783, 0]
+  "/Users/kaiwang/Desktop/SearchStore/SearchStore/SearchViewController.swift": [551908992, 0]
+  "/Users/kaiwang/Desktop/SearchStore/SearchStore/SearchResult.swift": [551908354, 0]
   "/Users/kaiwang/Desktop/SearchStore/SearchStore/AppDelegate.swift": [551736867, 0]
