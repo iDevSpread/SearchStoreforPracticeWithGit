@@ -150,18 +150,34 @@ SWIFT_CLASS("_TtC11SearchStore11AppDelegate")
 - (void)applicationWillEnterForeground:(UIApplication * _Nonnull)application;
 - (void)applicationDidBecomeActive:(UIApplication * _Nonnull)application;
 - (void)applicationWillTerminate:(UIApplication * _Nonnull)application;
+- (void)customizeAppearance;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class UILabel;
+@class UIImageView;
+@class NSCoder;
+
+SWIFT_CLASS("_TtC11SearchStore16SearchResultCell")
+@interface SearchResultCell : UITableViewCell
+@property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified artistNameLabel;
+@property (nonatomic, weak) IBOutlet UIImageView * _Null_unspecified artworkImageView;
+- (void)awakeFromNib;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier OBJC_DESIGNATED_INITIALIZER SWIFT_AVAILABILITY(ios,introduced=3.0);
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class UISearchBar;
 @class UITableView;
 @class NSBundle;
-@class NSCoder;
 
 SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @interface SearchViewController : UIViewController
 @property (nonatomic, weak) IBOutlet UISearchBar * _Null_unspecified searchBar;
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
+@property (nonatomic) BOOL hasSearched;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
@@ -174,9 +190,10 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 
 
 @interface SearchViewController (SWIFT_EXTENSION(SearchStore)) <UITableViewDelegate, UIScrollViewDelegate>
+- (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+- (NSIndexPath * _Nullable)tableView:(UITableView * _Nonnull)tableView willSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 @end
 
-@class UITableViewCell;
 @protocol UIBarPositioning;
 
 @interface SearchViewController (SWIFT_EXTENSION(SearchStore)) <UISearchBarDelegate, UIBarPositioningDelegate>
