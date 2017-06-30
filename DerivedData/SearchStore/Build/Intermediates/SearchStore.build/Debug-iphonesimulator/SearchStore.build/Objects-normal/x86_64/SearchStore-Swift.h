@@ -181,6 +181,10 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (NSURL * _Nonnull)iTunesURLWithSearchText:(NSString * _Nonnull)searchText SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nullable)performStoreRequestWith:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
+- (NSDictionary<NSString *, id> * _Nullable)parseWithJson:(NSString * _Nonnull)json SWIFT_WARN_UNUSED_RESULT;
+- (void)showNetworkError;
+- (void)parseWithDictionary:(NSDictionary<NSString *, id> * _Nonnull)dictionary;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end

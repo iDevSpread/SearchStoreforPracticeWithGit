@@ -47,7 +47,7 @@ class SearchViewController: UIViewController {
 	
 	func iTunesURL(searchText: String) -> URL {
 		let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-		let urlString = String(format: "https://itunes.apple.com/search?term=%@",escapedSearchText )
+		let urlString = String(format: "https://itunes.apple.com/search?term=%@",escapedSearchText)
 		let url = URL(string: urlString)
 		return url!
 	}
@@ -64,6 +64,49 @@ class SearchViewController: UIViewController {
 	}
 	
 	
+	func parse(json: String) -> [String: Any]? {
+		guard let data = json.data(using: .utf8, allowLossyConversion: false) else {
+			return nil
+		}
+		
+		do {
+		return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+		} catch  {
+			print("JSON error: \(error)")
+			return nil
+		}
+	}
+	
+	func showNetworkError(){
+		let alert = UIAlertController(
+			title: "Whoops...",
+			message:
+			"There is an error reading from the iTunes Store. Please make a new search.",
+			preferredStyle: .alert
+		)
+		
+		let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+		alert.addAction(action)
+		present(alert, animated: true, completion: nil) // present a manul view controller
+	}
+	
+	
+	func parse(dictionary: [String: Any]) {
+		guard let  array = dictionary["results"] as? [Any] else {
+			print("Expected 'result' array")
+			return
+		}
+		
+		for resultDict in array {
+			if let resultDict = resultDict as? [String: Any] {
+				if let wrapperType = resultDict["wrapperType"] as? String,
+					let kind = resultDict["kind"] as? String {
+					print("wrapperType: \(wrapperType), kind: \(kind)")
+				}
+			}
+		}
+		
+	}
 }
 
 // send search result to show
@@ -105,11 +148,21 @@ extension SearchViewController: UISearchBarDelegate {
 			searchResults = []
 			let url = iTunesURL(searchText: searchBar.text!)
 			print("URL: '\(url)'")
-			tableView.reloadData()
+			
+			if let jsonString = performStoreRequest(with: url) {
+				if let jsonDictionary = parse(json: jsonString) {
+					print("Dictionary \(jsonDictionary)")
+					parse(dictionary: jsonDictionary)
+					tableView.reloadData()
+					return
+				}
+				print("Received JSON string '\(jsonString)'")
+			}
+			
+			showNetworkError()
+			
 		}
 	}
-	
-	
 	// a good UI layout
 	func position(for bar: UIBarPositioning) -> UIBarPosition {
 		return .topAttached
