@@ -11,6 +11,8 @@ import UIKit
 class SearchViewController: UIViewController {
 
 	@IBOutlet weak var searchBar: UISearchBar!
+	//@IBOutlet weak var searchBar2: UISearchBar!
+	
 	@IBOutlet weak var tableView: UITableView!
 	
 	var searchResults: [SearchResult] = []
@@ -43,6 +45,25 @@ class SearchViewController: UIViewController {
 		static let nothingFoundCell = "NothingFoundCell"
 	}
 	
+	func iTunesURL(searchText: String) -> URL {
+		let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+		let urlString = String(format: "https://itunes.apple.com/search?term=%@",escapedSearchText )
+		let url = URL(string: urlString)
+		return url!
+	}
+	
+	
+	//if the request from the server fails, it returns nil.
+	func performStoreRequest(with url: URL) -> String? {
+		do {
+			return try String(contentsOf: url, encoding: .utf8)
+		} catch  {
+			print("Download Error: \(error)")
+			return nil
+		}
+	}
+	
+	
 }
 
 // send search result to show
@@ -53,7 +74,7 @@ extension SearchViewController: UISearchBarDelegate {
 		}else if searchResults.count == 0 {
 			return 1
 		} else{
-			return searchResults.count
+			return searchResults.count 
 		}
 		
 	}
@@ -78,20 +99,14 @@ extension SearchViewController: UISearchBarDelegate {
 	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-		searchBar.resignFirstResponder() // it can be used in the UITextView
-		searchResults = [] // Perform every result into the variable instances
-		
-		
-		if searchBar.text! != "Justin bieber" {
-			for i in 0...2{
-				let searchResult = SearchResult()
-				searchResult.name = String(format: "Fake Result %d for", i)
-				searchResult.artistName = searchBar.text!
-				searchResults.append(searchResult)
-			}
+		if !searchBar.text!.isEmpty {
+			searchBar.resignFirstResponder()
+			hasSearched = true
+			searchResults = []
+			let url = iTunesURL(searchText: searchBar.text!)
+			print("URL: '\(url)'")
+			tableView.reloadData()
 		}
-		hasSearched = true
-		tableView.reloadData()
 	}
 	
 	

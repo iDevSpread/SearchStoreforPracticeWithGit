@@ -180,6 +180,7 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @property (nonatomic) BOOL hasSearched;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
+- (NSURL * _Nonnull)iTunesURLWithSearchText:(NSString * _Nonnull)searchText SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @end
