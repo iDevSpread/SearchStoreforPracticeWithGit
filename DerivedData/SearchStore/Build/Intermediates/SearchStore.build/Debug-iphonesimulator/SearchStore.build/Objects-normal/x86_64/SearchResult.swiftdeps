@@ -32,9 +32,16 @@ depends-member:
 - ["PSo14NSSecureCoding", "init"]
 - ["CSo8NSString", "init"]
 - ["C11SearchStore12SearchResult", "artistName"]
+- ["C11SearchStore12SearchResult", "artworkLargeURL"]
+- ["C11SearchStore12SearchResult", "artworkSmallURL"]
+- ["C11SearchStore12SearchResult", "currency"]
 - ["C11SearchStore12SearchResult", "deinit"]
+- ["C11SearchStore12SearchResult", "genre"]
 - ["C11SearchStore12SearchResult", "init"]
+- ["C11SearchStore12SearchResult", "kind"]
 - ["C11SearchStore12SearchResult", "name"]
+- ["C11SearchStore12SearchResult", "price"]
+- ["C11SearchStore12SearchResult", "storeURL"]
 - ["SS", "init"]
 - ["Ps16TextOutputStream", "init"]
 - ["Ps20TextOutputStreamable", "init"]
@@ -97,4 +104,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
-interface-hash: "ca165f43aa1c87c81acef93bdff67bb2"
+interface-hash: "8f180ce54c7863979967a289ba9dc903"
