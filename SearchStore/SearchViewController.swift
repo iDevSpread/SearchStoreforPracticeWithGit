@@ -261,6 +261,13 @@ extension SearchViewController: UISearchBarDelegate {
 				if let jsonDictionary = parse(json: jsonString) {
 					print("Dictionary \(jsonDictionary)")
 					searchResults = parse(dictionary: jsonDictionary)
+				
+					// good way of sorting
+					searchResults.sort {
+						$0 < $1
+					}
+					
+					
 					tableView.reloadData()
 					return
 				}
