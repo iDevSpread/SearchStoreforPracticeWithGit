@@ -16,6 +16,7 @@
 		BA2312B21F03DA6E0045BE02 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2312B11F03DA6E0045BE02 /* SearchResultCell.xib */; };
 		BA2312B41F03E5420045BE02 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2312B31F03E5420045BE02 /* SearchResultCell.swift */; };
 		BA2312B61F0436D00045BE02 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2312B51F0436D00045BE02 /* NothingFoundCell.xib */; };
+		BAB8235A1F0962BE0061FA90 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB823591F0962BE0061FA90 /* LoadingCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BA2312B11F03DA6E0045BE02 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		BA2312B31F03E5420045BE02 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		BA2312B51F0436D00045BE02 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
+		BAB823591F0962BE0061FA90 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				BA23129D1F0051230045BE02 /* AppDelegate.swift */,
 				BA23129F1F0051230045BE02 /* SearchViewController.swift */,
+				BAB823591F0962BE0061FA90 /* LoadingCell.xib */,
 				BA2312B51F0436D00045BE02 /* NothingFoundCell.xib */,
 				BA2312B31F03E5420045BE02 /* SearchResultCell.swift */,
 				BA2312AF1F02EED90045BE02 /* SearchResult.swift */,
@@ -138,6 +141,7 @@
 			files = (
 				BA2312A81F0051230045BE02 /* LaunchScreen.storyboard in Resources */,
 				BA2312A51F0051230045BE02 /* Assets.xcassets in Resources */,
+				BAB8235A1F0962BE0061FA90 /* LoadingCell.xib in Resources */,
 				BA2312B21F03DA6E0045BE02 /* SearchResultCell.xib in Resources */,
 				BA2312B61F0436D00045BE02 /* NothingFoundCell.xib in Resources */,
 				BA2312A31F0051230045BE02 /* Main.storyboard in Resources */,

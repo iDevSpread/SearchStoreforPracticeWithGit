@@ -178,6 +178,7 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @property (nonatomic, weak) IBOutlet UISearchBar * _Null_unspecified searchBar;
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
 @property (nonatomic) BOOL hasSearched;
+@property (nonatomic) BOOL isLoading;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (NSURL * _Nonnull)iTunesURLWithSearchText:(NSString * _Nonnull)searchText SWIFT_WARN_UNUSED_RESULT;

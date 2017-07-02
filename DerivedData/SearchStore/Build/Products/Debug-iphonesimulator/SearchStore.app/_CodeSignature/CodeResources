@@ -124,6 +124,10 @@
 		<data>
 		MdnQIX1gHNZ+E2Fa3WSvCrTl9NA=
 		</data>
+		<key>LoadingCell.nib</key>
+		<data>
+		AL+z0YQuYv8Fn2yRtd0TMzax86I=
+		</data>
 		<key>NothingFoundCell.nib</key>
 		<data>
 		Sa43C8/hiZ5lJMidTs7Yiba55sg=
@@ -460,6 +464,17 @@
 			<key>hash2</key>
 			<data>
 			TzISm3nQNSGV8pl2MepS8JHMikwPFuRx1b1nG1yKpfQ=
+			</data>
+		</dict>
+		<key>LoadingCell.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AL+z0YQuYv8Fn2yRtd0TMzax86I=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZLwy2ntBo5gYFxbw/DJNTdQlKam9zr3XIIgSeWyYYM8=
 			</data>
 		</dict>
 		<key>NothingFoundCell.nib</key>
