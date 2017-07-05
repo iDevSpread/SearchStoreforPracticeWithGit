@@ -154,9 +154,42 @@ SWIFT_CLASS("_TtC11SearchStore11AppDelegate")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class UILabel;
+@class UIView;
 @class UIImageView;
+@class UILabel;
+@class UIButton;
 @class NSCoder;
+@class NSBundle;
+
+SWIFT_CLASS("_TtC11SearchStore20DetailViewController")
+@interface DetailViewController : UIViewController
+@property (nonatomic, weak) IBOutlet UIView * _Null_unspecified popup;
+@property (nonatomic, weak) IBOutlet UIImageView * _Null_unspecified artworkImageView;
+@property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified artistNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified kindLabel;
+@property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified genreLabel;
+@property (nonatomic, weak) IBOutlet UIButton * _Null_unspecified priceButton;
+- (IBAction)close;
+- (void)viewDidLoad;
+- (void)didReceiveMemoryWarning;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+@end
+
+@class UIPresentationController;
+
+@interface DetailViewController (SWIFT_EXTENSION(SearchStore)) <UIViewControllerTransitioningDelegate>
+- (UIPresentationController * _Nullable)presentationControllerForPresentedViewController:(UIViewController * _Nonnull)presented presentingViewController:(UIViewController * _Nullable)presenting sourceViewController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+SWIFT_CLASS("_TtC11SearchStore29DimmingPresentationController")
+@interface DimmingPresentationController : UIPresentationController
+@property (nonatomic, readonly) BOOL shouldRemovePresentersView;
+- (nonnull instancetype)initWithPresentedViewController:(UIViewController * _Nonnull)presentedViewController presentingViewController:(UIViewController * _Nullable)presentingViewController OBJC_DESIGNATED_INITIALIZER;
+@end
+
 
 SWIFT_CLASS("_TtC11SearchStore16SearchResultCell")
 @interface SearchResultCell : UITableViewCell
@@ -171,7 +204,6 @@ SWIFT_CLASS("_TtC11SearchStore16SearchResultCell")
 
 @class UISearchBar;
 @class UITableView;
-@class NSBundle;
 
 SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @interface SearchViewController : UIViewController

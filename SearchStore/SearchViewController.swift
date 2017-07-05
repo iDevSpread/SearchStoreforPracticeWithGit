@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
 	
+		
 	var searchResults: [SearchResult] = []
 	var hasSearched = false
 	var isLoading = false
@@ -329,6 +330,7 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
+		performSegue(withIdentifier: "ShowDetail", sender: indexPath)
 	}
 	
 	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
