@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+	var searchResult: SearchResult!
 	//it should be operated at one ViewController
 	
 	@IBOutlet weak var popup: UIView!
@@ -30,6 +31,15 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 				view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         // Do any additional setup after loading the view.
+				popup.layer.cornerRadius = 10
+			let gestureRecoginizer = UITapGestureRecognizer(target: self, action: #selector(close))
+			gestureRecoginizer.cancelsTouchesInView = false
+			gestureRecoginizer.delegate = self
+			view.addGestureRecognizer(gestureRecoginizer)
+			
+			if searchResult != nil {
+				updateUI()
+			}
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,11 +63,31 @@ class DetailViewController: UIViewController {
 		modalPresentationStyle = .custom
 		transitioningDelegate = self
 	}
+	
+	
+	func updateUI() {
+		nameLabel.text = searchResult.name
+		if searchResult.artistName.isEmpty {
+			artistNameLabel.text = "Unkown"
+		} else {
+			artistNameLabel.text = searchResult.artistName
+		}
+		
+		kindLabel.text = searchResult.kind
+		genreLabel.text = searchResult.genre
+	}
 }
 
 
 extension DetailViewController: UIViewControllerTransitioningDelegate {
 	func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
 		return DimmingPresentationController(presentedViewController: presented, presenting: presenting)
+	}
+}
+
+// this method can be used in any view which was designed to perform the same animation
+extension DetailViewController: UIGestureRecognizerDelegate {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+		return (touch.view === self.view)
 	}
 }

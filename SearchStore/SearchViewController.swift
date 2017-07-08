@@ -19,6 +19,9 @@ class SearchViewController: UIViewController {
 	var searchResults: [SearchResult] = []
 	var hasSearched = false
 	var isLoading = false
+	var dataTask: URLSessionDataTask?
+	
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -44,6 +47,14 @@ class SearchViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "ShowDetail" {
+			let detailViewController = segue.destination as! DetailViewController
+			let indexPath = sender as! IndexPath
+			let searchResult = searchResults[indexPath.row]
+			detailViewController.searchResult = searchResult
+		}
+	}
 
 	struct TableViewCellIdentifiers {
 		static let searchResultCell = "SearchResultCell"
@@ -53,27 +64,17 @@ class SearchViewController: UIViewController {
 	
 	func iTunesURL(searchText: String) -> URL {
 		let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-		let urlString = String(format: "https://itunes.apple.com/search?term=%@",escapedSearchText)
+		let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200",escapedSearchText)
 		let url = URL(string: urlString)
 		return url!
 	}
 	
 	
 	//if the request from the server fails, it returns nil.
-	func performStoreRequest(with url: URL) -> String? {
-		do {
-			return try String(contentsOf: url, encoding: .utf8)
-		} catch  {
-			print("Download Error: \(error)")
-			return nil
-		}
-	}
 	
 	
-	func parse(json: String) -> [String: Any]? {
-		guard let data = json.data(using: .utf8, allowLossyConversion: false) else {
-			return nil
-		}
+	
+	func parse(json data: Data) -> [String: Any]? {
 		
 		do {
 		return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -265,55 +266,47 @@ extension SearchViewController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		if !searchBar.text!.isEmpty {
 			searchBar.resignFirstResponder()
+			dataTask?.cancel()
+			
 			hasSearched = true
 			searchResults = []
 			
 			isLoading = true
 			tableView.reloadData()
 			
-			let queue = DispatchQueue.global()
-			queue.async {
-				let url = self.iTunesURL(searchText: searchBar.text!)
-				if let jsonString = self.performStoreRequest(with: url),
-					let jsonDictionary = self.parse(json: jsonString) {
+			let url = iTunesURL(searchText: searchBar.text!)
+			let session = URLSession.shared
+			dataTask = session.dataTask(with: url, completionHandler: {
+				data, response, error in
+			if let error = error as NSError?, error.code == -999 {
+				return 
+			} else if let httpResponse = response as? HTTPURLResponse,
+										httpResponse.statusCode == 200 {
+				if let data = data, let jsonDictionary = self.parse(json: data) {
 					self.searchResults = self.parse(dictionary: jsonDictionary)
 					self.searchResults.sort(by: <)
 					
-					
-					//update the user interface
 					DispatchQueue.main.async {
 						self.isLoading = false
 						self.tableView.reloadData()
 					}
 					return
 				}
+			} else {
+				print("Failure! \(response!)")
+				}
 				
 				DispatchQueue.main.async {
+					self.hasSearched = false
+					self.isLoading = false
+					self.tableView.reloadData()
 					self.showNetworkError()
 				}
-			}
+			})
 			
-//			let url = iTunesURL(searchText: searchBar.text!)
-//			print("URL: '\(url)'")
-//			
-//			if let jsonString = performStoreRequest(with: url) {
-//				if let jsonDictionary = parse(json: jsonString) {
-//					print("Dictionary \(jsonDictionary)")
-//					searchResults = parse(dictionary: jsonDictionary)
-//				
-//					// good way of sorting
-//					searchResults.sort {
-//						$0 < $1
-//					}
-//					
-//					isLoading = false
-//					tableView.reloadData()
-//					return
-//				}
-//				print("Received JSON string '\(jsonString)'")
-//			}
-//			
-//			showNetworkError()
+			
+			
+			dataTask?.resume()
 			
 		}
 	}

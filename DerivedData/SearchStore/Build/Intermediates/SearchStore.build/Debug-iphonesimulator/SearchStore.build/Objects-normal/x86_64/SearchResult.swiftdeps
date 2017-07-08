@@ -12,12 +12,16 @@ depends-top-level:
 - !private "=="
 - "Bool"
 - "SearchResult"
+- "String"
 - "StringLiteralType"
+- !private "~="
 depends-member:
 - ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "kind"]
 - !private ["Ps9AnyObject", "localizedStandardCompare"]
 - !private ["Ps9AnyObject", "name"]
 - ["Ps9AnyObject", ""]
+- !private ["Sb", "_getBuiltinLogicValue"]
 - ["Ps7CVarArg", "init"]
 - !private ["Ps7CVarArg", "localizedStandardCompare"]
 - ["Ps10Comparable", "init"]
@@ -25,24 +29,31 @@ depends-member:
 - !private ["OSC16ComparisonResult", "orderedAscending"]
 - ["Ps28CustomDebugStringConvertible", "init"]
 - !private ["Ps28CustomDebugStringConvertible", "localizedStandardCompare"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
 - ["Ps29CustomPlaygroundQuickLookable", "init"]
 - !private ["Ps29CustomPlaygroundQuickLookable", "localizedStandardCompare"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
 - ["Ps17CustomReflectable", "init"]
 - !private ["Ps17CustomReflectable", "localizedStandardCompare"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
 - ["Ps23CustomStringConvertible", "init"]
 - !private ["Ps23CustomStringConvertible", "localizedStandardCompare"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
 - ["Ps9Equatable", "init"]
 - !private ["Ps9Equatable", "localizedStandardCompare"]
 - !private ["Ps9Equatable", "orderedAscending"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
 - ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
 - !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "localizedStandardCompare"]
 - ["Ps26ExpressibleByStringLiteral", "init"]
 - !private ["Ps26ExpressibleByStringLiteral", "localizedStandardCompare"]
 - ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
 - !private ["Ps33ExpressibleByUnicodeScalarLiteral", "localizedStandardCompare"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
 - ["Ps8Hashable", "init"]
 - !private ["Ps8Hashable", "localizedStandardCompare"]
 - !private ["Ps8Hashable", "orderedAscending"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
 - ["Ps25LosslessStringConvertible", "init"]
 - !private ["Ps25LosslessStringConvertible", "localizedStandardCompare"]
 - ["Ps10MirrorPath", "init"]
@@ -61,6 +72,7 @@ depends-member:
 - ["CSo8NSString", "init"]
 - !private ["CSo8NSString", "localizedStandardCompare"]
 - !private ["Ps16RawRepresentable", "orderedAscending"]
+- ["C11SearchStore12SearchResult", "String"]
 - ["C11SearchStore12SearchResult", "artistName"]
 - ["C11SearchStore12SearchResult", "artworkLargeURL"]
 - ["C11SearchStore12SearchResult", "artworkSmallURL"]
@@ -69,6 +81,7 @@ depends-member:
 - ["C11SearchStore12SearchResult", "genre"]
 - ["C11SearchStore12SearchResult", "init"]
 - ["C11SearchStore12SearchResult", "kind"]
+- ["C11SearchStore12SearchResult", "kindForDisplay"]
 - ["C11SearchStore12SearchResult", "name"]
 - ["C11SearchStore12SearchResult", "price"]
 - ["C11SearchStore12SearchResult", "storeURL"]
@@ -78,6 +91,7 @@ depends-member:
 - !private ["Ps16TextOutputStream", "localizedStandardCompare"]
 - ["Ps20TextOutputStreamable", "init"]
 - !private ["Ps20TextOutputStreamable", "localizedStandardCompare"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
 - ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
 - !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "localizedStandardCompare"]
 - ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
@@ -90,13 +104,16 @@ depends-member:
 - !private ["Ps33_ExpressibleByStringInterpolation", "localizedStandardCompare"]
 - ["Ps35_HasCustomAnyHashableRepresentation", "init"]
 - !private ["Ps35_HasCustomAnyHashableRepresentation", "localizedStandardCompare"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
 - ["Ps9_Hashable", "init"]
 - !private ["Ps9_Hashable", "localizedStandardCompare"]
 - !private ["Ps9_Hashable", "orderedAscending"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
 - ["Ps21_ObjectiveCBridgeable", "init"]
 - !private ["Ps21_ObjectiveCBridgeable", "localizedStandardCompare"]
 depends-nominal:
 - "Ps9AnyObject"
+- !private "Sb"
 - "Ps7CVarArg"
 - "Ps10Comparable"
 - !private "OSC16ComparisonResult"
@@ -105,6 +122,7 @@ depends-nominal:
 - "Ps17CustomReflectable"
 - "Ps23CustomStringConvertible"
 - "Ps9Equatable"
+- !private "Ps27ExpressibleByBooleanLiteral"
 - "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
 - "Ps26ExpressibleByStringLiteral"
 - "Ps33ExpressibleByUnicodeScalarLiteral"
@@ -123,6 +141,7 @@ depends-nominal:
 - "SS"
 - "Ps16TextOutputStream"
 - "Ps20TextOutputStreamable"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
 - "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
 - "Ps34_ExpressibleByBuiltinStringLiteral"
 - "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
@@ -149,4 +168,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
-interface-hash: "e80601edd75025a59c3f36a6aeda4e96"
+interface-hash: "caeb025a445d33f5cde8e4e37752bfce"

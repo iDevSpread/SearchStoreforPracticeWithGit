@@ -174,6 +174,7 @@ SWIFT_CLASS("_TtC11SearchStore20DetailViewController")
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (void)updateUI;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
@@ -181,6 +182,13 @@ SWIFT_CLASS("_TtC11SearchStore20DetailViewController")
 
 @interface DetailViewController (SWIFT_EXTENSION(SearchStore)) <UIViewControllerTransitioningDelegate>
 - (UIPresentationController * _Nullable)presentationControllerForPresentedViewController:(UIViewController * _Nonnull)presented presentingViewController:(UIViewController * _Nullable)presenting sourceViewController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class UIGestureRecognizer;
+@class UITouch;
+
+@interface DetailViewController (SWIFT_EXTENSION(SearchStore)) <UIGestureRecognizerDelegate>
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldReceiveTouch:(UITouch * _Nonnull)touch SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -204,6 +212,8 @@ SWIFT_CLASS("_TtC11SearchStore16SearchResultCell")
 
 @class UISearchBar;
 @class UITableView;
+@class NSURLSessionDataTask;
+@class UIStoryboardSegue;
 
 SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @interface SearchViewController : UIViewController
@@ -211,11 +221,12 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
 @property (nonatomic) BOOL hasSearched;
 @property (nonatomic) BOOL isLoading;
+@property (nonatomic, strong) NSURLSessionDataTask * _Nullable dataTask;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
+- (void)prepareForSegue:(UIStoryboardSegue * _Nonnull)segue sender:(id _Nullable)sender;
 - (NSURL * _Nonnull)iTunesURLWithSearchText:(NSString * _Nonnull)searchText SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nullable)performStoreRequestWith:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
-- (NSDictionary<NSString *, id> * _Nullable)parseWithJson:(NSString * _Nonnull)json SWIFT_WARN_UNUSED_RESULT;
+- (NSDictionary<NSString *, id> * _Nullable)parseWithJson:(NSData * _Nonnull)data SWIFT_WARN_UNUSED_RESULT;
 - (void)showNetworkError;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
