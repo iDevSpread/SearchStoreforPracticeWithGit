@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G23a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G24b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,9 +36,30 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="q6G-oT-v80"/>
                                 </connections>
                             </searchBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hH1-K5-AcX">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="bt9-ZS-brp">
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tZq-bS-lkx">
+                                            <rect key="frame" x="10" y="7.5" width="300" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="All"/>
+                                                <segment title="Music"/>
+                                                <segment title="Software"/>
+                                                <segment title="E-books"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentedChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="mzd-e5-R2G"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="hH1-K5-AcX" firstAttribute="top" secondItem="Vsi-vo-Ufr" secondAttribute="bottom" id="9OZ-lS-A75"/>
                             <constraint firstAttribute="trailing" secondItem="Vsi-vo-Ufr" secondAttribute="trailing" id="Mqc-cO-o1W"/>
                             <constraint firstAttribute="trailing" secondItem="F1X-6J-acW" secondAttribute="trailing" id="PH2-JY-KHY"/>
                             <constraint firstItem="Vsi-vo-Ufr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Pi2-Yh-wqW"/>
@@ -46,10 +67,13 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="F1X-6J-acW" secondAttribute="bottom" id="Wqm-Cb-lIm"/>
                             <constraint firstItem="F1X-6J-acW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="acL-GJ-bha"/>
                             <constraint firstItem="F1X-6J-acW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="igP-2q-0NA"/>
+                            <constraint firstItem="hH1-K5-AcX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="n8R-3V-iO7"/>
+                            <constraint firstAttribute="trailing" secondItem="hH1-K5-AcX" secondAttribute="trailing" id="wrj-hv-icH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="Vsi-vo-Ufr" id="tF2-a1-mkw"/>
+                        <outlet property="segmentedControl" destination="tZq-bS-lkx" id="8Cg-Su-5ag"/>
                         <outlet property="tableView" destination="F1X-6J-acW" id="h5H-yT-ppV"/>
                         <segue destination="7OJ-yY-8cF" kind="presentation" identifier="ShowDetail" id="lDk-st-FU9"/>
                     </connections>

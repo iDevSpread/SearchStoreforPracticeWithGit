@@ -212,6 +212,7 @@ SWIFT_CLASS("_TtC11SearchStore16SearchResultCell")
 
 @class UISearchBar;
 @class UITableView;
+@class UISegmentedControl;
 @class NSURLSessionDataTask;
 @class UIStoryboardSegue;
 
@@ -219,13 +220,15 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 @interface SearchViewController : UIViewController
 @property (nonatomic, weak) IBOutlet UISearchBar * _Null_unspecified searchBar;
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified tableView;
+@property (nonatomic, weak) IBOutlet UISegmentedControl * _Null_unspecified segmentedControl;
+- (IBAction)segmentedChanged:(UISegmentedControl * _Nonnull)sender;
 @property (nonatomic) BOOL hasSearched;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic, strong) NSURLSessionDataTask * _Nullable dataTask;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (void)prepareForSegue:(UIStoryboardSegue * _Nonnull)segue sender:(id _Nullable)sender;
-- (NSURL * _Nonnull)iTunesURLWithSearchText:(NSString * _Nonnull)searchText SWIFT_WARN_UNUSED_RESULT;
+- (NSURL * _Nonnull)iTunesURLWithSearchText:(NSString * _Nonnull)searchText category:(NSInteger)category SWIFT_WARN_UNUSED_RESULT;
 - (NSDictionary<NSString *, id> * _Nullable)parseWithJson:(NSData * _Nonnull)data SWIFT_WARN_UNUSED_RESULT;
 - (void)showNetworkError;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
@@ -248,6 +251,7 @@ SWIFT_CLASS("_TtC11SearchStore20SearchViewController")
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)searchBarSearchButtonClicked:(UISearchBar * _Nonnull)searchBar;
+- (void)performSearch;
 - (UIBarPosition)positionForBar:(id <UIBarPositioning> _Nonnull)bar SWIFT_WARN_UNUSED_RESULT;
 @end
 
